@@ -13,16 +13,38 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>shopifyintegrator</name>
     <description>Shopify Integrator</description>
+
     <properties>
         <java.version>11</java.version>
+        <camel.version>3.15.0</camel.version>
+        <start-class>com.koombea.shopifyintegrator.ShopifyintegratorApplication</start-class>
     </properties>
+    
     <dependencies>
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
-            <version>3.15.0</version>
+            <version>${camel.version}</version>
         </dependency>
-
+        
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jackson</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jsonpath</artifactId>
+            <version>${camel.version}</version>
+        </dependency>
+        
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-http</artifactId>
+            <version>${camel.version}</version>
+        </dependency>      
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
