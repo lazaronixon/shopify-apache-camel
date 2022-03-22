@@ -1,7 +1,7 @@
 package com.koombea.shopifyintegrator.routes;
 
 import com.koombea.shopifyintegrator.models.erp.Product;
-import com.koombea.shopifyintegrator.services.ParameterService;
+import com.koombea.shopifyintegrator.processors.ConfigurationProcessor;
 import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
@@ -11,11 +11,11 @@ public class ProductRoute extends RouteBuilder {
     @Override
     public void configure() throws Exception {
         from("scheduler:fetchProductsTimer?delay={{app.delay}}")
-                .setHeader("LastRefresh", method(ParameterService.class, "getLastRefresh"))
+                .setHeader("LastRefresh", method(ConfigurationProcessor.class, "getProductsRefreshedAt"))
                 .log("Searching for new products since ${header.LastRefresh}")
                 .to("direct:fetchProductsERP")
                 .to("direct:sendProductsToShopify")
-                .to("direct:updateProductsRefreshedAt")
+                .to("direct:setProductsRefreshedAt")
                 .log("Aguardando...");
         
         from("direct:fetchProductsERP")
@@ -26,7 +26,7 @@ public class ProductRoute extends RouteBuilder {
                 .unmarshal().json(Product.class)
                 .log("Sending product ${body.id}");
 
-        from("direct:updateProductsRefreshedAt")
-                .bean(ParameterService.class, "updateLastRefresh");
+        from("direct:setProductsRefreshedAt")
+                .bean(ConfigurationProcessor.class, "setProductsRefreshedAt");
     }
 }
