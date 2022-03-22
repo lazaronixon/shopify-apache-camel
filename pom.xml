@@ -17,7 +17,6 @@
     <properties>
         <java.version>11</java.version>
         <camel.version>3.15.0</camel.version>
-        <start-class>com.koombea.shopifyintegrator.ShopifyintegratorApplication</start-class>
     </properties>
     
     <dependencies>
@@ -26,29 +25,29 @@
             <artifactId>camel-spring-boot-starter</artifactId>
             <version>${camel.version}</version>
         </dependency>
-        
+               
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jackson</artifactId>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-jackson-starter</artifactId>
             <version>${camel.version}</version>
         </dependency>
         
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-jsonpath</artifactId>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-jsonpath-starter</artifactId>
             <version>${camel.version}</version>
         </dependency>
         
         <dependency>
-            <groupId>org.apache.camel</groupId>
-            <artifactId>camel-http</artifactId>
+            <groupId>org.apache.camel.springboot</groupId>
+            <artifactId>camel-http-starter</artifactId>
             <version>${camel.version}</version>
-        </dependency>      
-        
+        </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
+        </dependency>               
         
         <dependency>
             <groupId>org.apache.derby</groupId>
@@ -66,7 +65,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <scope>provided</scope>
-        </dependency>                
+        </dependency>     
+        
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>                              
         
         <dependency>
             <groupId>org.springframework.boot</groupId>
